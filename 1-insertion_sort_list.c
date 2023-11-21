@@ -1,40 +1,38 @@
 #include "sort.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * insertion_sort_list - Sorts a doubly linked list of integers in ascending order
- * using the Insertion sort algorithm
- * @list: Double pointer to the head of the list
+ * insertion_sort_list - sorts a doubly linked list of integers in ascending
+ * order using the Insertion sort algorithm
+ * @list: Double pointer to the head of the linked list
+ *
+ * Return: void
  */
 void insertion_sort_list(listint_t **list)
 {
-    if (list == NULL || *list == NULL || (*list)->next == NULL)
-        return;
+	listint_t *swap_node, *next_swap;
 
-    listint_t *current, *temp;
-
-    current = (*list)->next;
-
-    while (current != NULL)
-    {
-        temp = current;
-        while (temp->prev != NULL && temp->n < temp->prev->n)
-        {
-            /* Swap the nodes */
-            temp->prev->next = temp->next;
-            if (temp->next != NULL)
-                temp->next->prev = temp->prev;
-            temp->next = temp->prev;
-            temp->prev = temp->next->prev;
-            temp->next->prev = temp;
-
-            /* Update the head if needed */
-            if (temp->prev == NULL)
-                *list = temp;
-
-            /* Print the list after each swap */
-            print_list(*list);
-        }
-
-        current = current->next;
-    }
+	if (list == NULL || *list == NULL)
+		return;
+	swap_node = (*list)->next;
+	while (swap_node != NULL)
+	{
+		next_swap = swap_node->next;
+		while (swap_node->prev != NULL && swap_node->prev->n > swap_node->n)
+		{
+			swap_node->prev->next = swap_node->next;
+			if (swap_node->next != NULL)
+				swap_node->next->prev = swap_node->prev;
+			swap_node->next = swap_node->prev;
+			swap_node->prev = swap_node->next->prev;
+			swap_node->next->prev = swap_node;
+			if (swap_node->prev == NULL)
+				*list = swap_node;
+			else
+				swap_node->prev->next = swap_node;
+			print_list(*list);
+		}
+		swap_node = next_swap;
+	}
 }
