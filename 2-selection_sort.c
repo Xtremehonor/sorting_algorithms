@@ -1,16 +1,15 @@
 #include "sort.h"
-/**
- * _swap - swap two numbers
- * @a: integer
- * @b: integer
- **/
-void _swap(int *a, int *b)
-{
-	int tmp;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+/**
+ * swap_integers - Swap two integers
+ * @a: First integer
+ * @b: Second integer
+ **/
+void swap_integers(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 /**
  * selection_sort - sort array using selection sort algorithm
@@ -35,7 +34,7 @@ void selection_sort(int *array, size_t size)
 		}
 		if (min != i)
 		{
-			_swap(&array[i], &array[min]);
+			swap_integers(&array[i], &array[min]);
 			print_array(array, size);
 		}
 	}
