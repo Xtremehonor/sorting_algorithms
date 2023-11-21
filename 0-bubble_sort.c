@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "sort.h"
 
 /**
@@ -18,18 +19,16 @@ void bubble_sort(int *array, size_t size)
         {
             if (array[j] > array[j + 1])
             {
-                /* Swap the elements */
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
-
-                /* Print the array after each swap */
-                print_array(array, size);
                 swapped = 1;
+
+                print_array(array, size);
             }
         }
 
-        /* If no two elements were swapped in the inner loop, the array is sorted */
+        // If no two elements were swapped by inner loop, the array is already sorted
         if (swapped == 0)
             break;
     }
