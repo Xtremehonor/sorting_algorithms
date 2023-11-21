@@ -46,7 +46,7 @@ if (array[above] > *pivot)
 	print_array(array, size);
 }
 
-return above;
+return (above);
 }
 
 /**
