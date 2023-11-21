@@ -7,9 +7,9 @@
  */
 void swap_elements(int *a, int *b)
 {
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
+int tmp = *a;
+*a = *b;
+*b = tmp;
 }
 
 /**
@@ -24,29 +24,29 @@ void swap_elements(int *a, int *b)
  */
 int lomuto_partition(int *array, size_t size, int left, int right)
 {
-    int *pivot = array + right;
-    int above, below;
+int *pivot = array + right;
+int above, below;
 
-    for (above = below = left; below < right; below++)
-    {
-        if (array[below] < *pivot)
-        {
-            if (above < below)
-            {
-                swap_elements(array + below, array + above);
-                print_array(array, size);
-            }
-            above++;
-        }
-    }
+for (above = below = left; below < right; below++)
+{
+	if (array[below] < *pivot)
+	{
+		if (above < below)
+		{
+			swap_elements(array + below, array + above);
+			print_array(array, size);
+		}
+		above++;
+	}
+}
 
-    if (array[above] > *pivot)
-    {
-        swap_elements(array + above, pivot);
-        print_array(array, size);
-    }
+if (array[above] > *pivot)
+{
+	swap_elements(array + above, pivot);
+	print_array(array, size);
+}
 
-    return above;
+return above;
 }
 
 /**
@@ -58,14 +58,14 @@ int lomuto_partition(int *array, size_t size, int left, int right)
  */
 void lomuto_recursive_sort(int *array, size_t size, int left, int right)
 {
-    int part;
+int part;
 
-    if (right - left > 0)
-    {
-        part = lomuto_partition(array, size, left, right);
-        lomuto_recursive_sort(array, size, left, part - 1);
-        lomuto_recursive_sort(array, size, part + 1, right);
-    }
+if (right - left > 0)
+{
+	part = lomuto_partition(array, size, left, right);
+	lomuto_recursive_sort(array, size, left, part - 1);
+	lomuto_recursive_sort(array, size, part + 1, right);
+}
 }
 
 /**
@@ -76,8 +76,8 @@ void lomuto_recursive_sort(int *array, size_t size, int left, int right)
  */
 void quick_sort(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
-        return;
+if (array == NULL || size < 2)
+	return;
 
-    lomuto_recursive_sort(array, size, 0, size - 1);
+lomuto_recursive_sort(array, size, 0, size - 1);
 }
