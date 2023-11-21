@@ -1,41 +1,43 @@
 #include "sort.h"
-
 /**
- * swap_integers - Swap two integers
- * @a: First integer
- * @b: Second integer
+ * _swap - swap two numbers
+ * @a: integer
+ * @b: integer
  **/
-void swap_integers(int *a, int *b)
+void _swap(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+	int tmp;
 
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 /**
- * selection_sort - Sort an array using the selection sort algorithm
- * @array: Array to be sorted
- * @size: Size of the array
+ * selection_sort - sort array using selection sort algorithm
+ * @array: array
+ * @size: array size
  **/
+
 void selection_sort(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
-        return;
+	unsigned int i, j, min;
 
-    for (size_t i = 0; i < size - 1; i++)
-    {
-        size_t min_index = i;
+	if (array == NULL || size < 2)
+		return;
 
-        for (size_t j = i + 1; j < size; j++)
-        {
-            if (array[j] < array[min_index])
-                min_index = j;
-        }
+	for (i = 0; i < size; i++)
+	{
+		min = i;
+		for (j = i + 1; j < size; j++)
+		{
+			if (array[min] > array[j])
+				min = j;
+		}
+		if (min != i)
+		{
+			_swap(&array[i], &array[min]);
+			print_array(array, size);
+		}
+	}
 
-        if (min_index != i)
-        {
-            swap_integers(&array[i], &array[min_index]);
-            print_array(array, size);
-        }
-    }
 }
