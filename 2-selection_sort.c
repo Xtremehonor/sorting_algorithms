@@ -7,9 +7,9 @@
  **/
 void swap_integers(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+int temp = *a;
+*a = *b;
+*b = temp;
 }
 /**
  * selection_sort - sort array using selection sort algorithm
@@ -38,5 +38,4 @@ void selection_sort(int *array, size_t size)
 			print_array(array, size);
 		}
 	}
-
 }
